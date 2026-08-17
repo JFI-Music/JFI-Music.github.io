@@ -1,0 +1,14 @@
+.DS_Store
+.tools/
+assets/*.dmg
+assets/*.zip
+assets/*.pdf
+assets/*.textClipping
+assets/589_stem_vapor-wave_wav/
+assets/2026 Destroy the Girl.mp4
+assets/2026 Destroy the Girl AUDIO CORRECTED.MP4
+assets/JFI_COTVC_LIVE _ MOON DIAL.mp4
+assets/JFI_catalog_products.csv
+
+# Keep unused source assets local unless deliberately force-added.
+assets/*
