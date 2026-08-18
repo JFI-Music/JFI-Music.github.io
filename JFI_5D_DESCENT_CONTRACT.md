@@ -211,14 +211,30 @@ Maintain a practical architecture guide covering scene/content mapping, animatio
 - [x] No console errors, missing assets, broken URLs, horizontal overflow, or blocked controls in local testing.
 - [x] Refresh and direct navigation work at different scene positions.
 - [x] Performance audit: mobile particle/resolution caps, ~30 FPS canvas throttle, document visibility pause, prologue intersection pause, offscreen ambient-loop pause, lazy imagery, and WebP derivatives.
-- [ ] GitHub Pages build and live deployment verified.
+- [x] GitHub Pages build and live deployment verified at `https://jfi-music.github.io/` from implementation commit `2d021df`.
 
 ### Final audit
 
 - [x] Re-read this contract after implementation.
 - [x] Compare every scene against the contract and fix material omissions.
 - [x] Update the asset ledger, architecture, limitations, and checklist to final state.
-- [ ] Summarize new assets and major changed files.
+- [x] Summarize new assets and major changed files in this contract, `DESCENT_ARCHITECTURE.md`, and the delivery handoff.
+
+## Implemented file summary
+
+- `index.html` — re-authored into the semantic continuous descent, preserved media/information chapters, audience activation, visitor payoff, direct navigation, skip link, lazy media, and no-JavaScript audio fallbacks.
+- `styles.css` — cinematic stage, original scene composition, players, existing media polish, audience/visitor visuals, responsive layouts, reduced-motion mode, focus states, and offscreen animation controls.
+- `script.js` — centralized canvas/scroll coordinator, procedural scene rendering, direct scene activation, audio controls, one-time reveals, visibility pausing, and responsive canvas management.
+- `assets/5d/` — original Fi and Austin cinematic assets.
+- `assets/web/` — optimized derivatives of approved JFI master artwork.
+- `DESCENT_ARCHITECTURE.md` — maintenance, timing, asset, responsive, accessibility, effect-toggle, and deployment guide.
+- `README.md` — project entry point linking the canonical contract and architecture guide.
+
+## Deployment record
+
+- Pre-descent recoverable baseline: `e63f32c`.
+- Complete cinematic implementation: `2d021df`.
+- GitHub Pages build status: **built and visually verified live** on 2026-08-18.
 
 ## Current limitations and deliberate boundaries
 
