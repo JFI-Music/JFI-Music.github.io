@@ -139,10 +139,17 @@ let descentTop = 0;
 let descentRange = 1;
 let sceneCenters = [];
 let journeyProgress = 0;
+let targetJourneyProgress = 0;
+let scrollEnergy = 0;
+let journeyInitialized = false;
 let activeSceneIndex = -1;
 let journeyVisible = true;
 let animationFrame = 0;
 let lastDrawTime = 0;
+let lastAnimationTime = 0;
+
+const SCROLL_EASE_MS = 520;
+const SCROLL_ENERGY_DECAY_MS = 1100;
 
 const seededRandom = (seed) => {
   const value = Math.sin(seed * 999.91) * 43758.5453;
@@ -176,7 +183,8 @@ const resizeCanvas = () => {
   canvas.height = Math.round(canvasHeight * pixelRatio);
   context.setTransform(pixelRatio,0,0,pixelRatio,0,0);
   measureDescent();
-  updateDescentState();
+  updateDescentTarget(!journeyInitialized);
+  journeyInitialized = true;
 };
 
 const drawAtmosphere = (progressValue) => {
@@ -238,7 +246,7 @@ const drawGalaxy = (progressValue, time) => {
 const drawStars = (progressValue, time) => {
   const cosmic = smoothstep(.25,.48,progressValue);
   const density = window.innerWidth < 800 ? 75 : 150;
-  const acceleration = bell(progressValue,.42,.59,.72);
+  const acceleration = bell(progressValue,.42,.59,.72) + scrollEnergy * 1.4;
   context.save();
   context.globalCompositeOperation = 'lighter';
   stars.slice(0,density).forEach((star,index) => {
@@ -251,7 +259,7 @@ const drawStars = (progressValue, time) => {
     context.lineWidth = star.size * (.6 + scale * .45);
     context.beginPath();
     context.moveTo(x,y);
-    context.lineTo(x + (x - canvasWidth * .5) * acceleration * .018,y + (y - canvasHeight * .5) * acceleration * .018);
+    context.lineTo(x + (x - canvasWidth * .5) * acceleration * .022,y + (y - canvasHeight * .5) * acceleration * .022);
     context.stroke();
     if (cosmic < .15) {
       const drift = Math.sin(time * .00015 + star.phase) * 2;
@@ -267,9 +275,10 @@ const drawSignal = (progressValue, time) => {
   const signalY = canvasHeight * (.12 + progressValue * .76);
   context.save();
   context.globalCompositeOperation = 'lighter';
-  const glow = context.createRadialGradient(signalX,signalY,0,signalX,signalY,48);
+  const glowRadius = 48 + scrollEnergy * 26;
+  const glow = context.createRadialGradient(signalX,signalY,0,signalX,signalY,glowRadius);
   glow.addColorStop(0,'rgba(255,255,255,.95)'); glow.addColorStop(.15,'rgba(255,75,180,.68)'); glow.addColorStop(1,'rgba(122,71,255,0)');
-  context.fillStyle = glow; context.beginPath(); context.arc(signalX,signalY,48,0,Math.PI * 2); context.fill();
+  context.fillStyle = glow; context.beginPath(); context.arc(signalX,signalY,glowRadius,0,Math.PI * 2); context.fill();
   context.strokeStyle='rgba(212,178,255,.32)'; context.lineWidth=1; context.beginPath(); context.moveTo(canvasWidth * .5,-20); context.bezierCurveTo(canvasWidth * .58,canvasHeight * .3,canvasWidth * .4,canvasHeight * .56,signalX,signalY); context.stroke();
   context.restore();
 };
@@ -298,21 +307,48 @@ const setActiveScene = (localCenter) => {
   sceneName.textContent = descentScenes[nearest].dataset.sceneName;
 };
 
-const updateDescentState = () => {
-  const localScroll = window.scrollY - descentTop;
-  journeyProgress = clamp(localScroll / descentRange);
+const applyDescentState = () => {
   rootStyle.setProperty('--journey',journeyProgress.toFixed(4));
+  rootStyle.setProperty('--scroll-energy',scrollEnergy.toFixed(3));
   rootStyle.setProperty('--fi-opacity',bell(journeyProgress,.07,.19,.34).toFixed(3));
   rootStyle.setProperty('--earth-opacity',bell(journeyProgress,.51,.66,.79).toFixed(3));
   rootStyle.setProperty('--austin-opacity',bell(journeyProgress,.67,.85,.95).toFixed(3));
   rootStyle.setProperty('--receiver-opacity',smoothstep(.90,.985,journeyProgress).toFixed(3));
-  setActiveScene(localScroll + window.innerHeight * .5);
+  setActiveScene(journeyProgress * descentRange + window.innerHeight * .5);
+};
+
+const updateDescentTarget = (instant = false) => {
+  const localScroll = window.scrollY - descentTop;
+  const nextTarget = clamp(localScroll / descentRange);
+  if (!instant && !reducedMotion.matches) {
+    scrollEnergy = Math.min(1,scrollEnergy + Math.abs(nextTarget - targetJourneyProgress) * 13);
+  }
+  targetJourneyProgress = nextTarget;
+  rootStyle.setProperty('--journey-target',targetJourneyProgress.toFixed(4));
+  if (instant || reducedMotion.matches) {
+    journeyProgress = targetJourneyProgress;
+    scrollEnergy = 0;
+    applyDescentState();
+  }
   document.querySelector('.site-header').classList.toggle('scrolled',window.scrollY > 50);
 };
 
 const animationLoop = (time) => {
   animationFrame = 0;
   if (!journeyVisible || document.hidden) return;
+  const deltaTime = lastAnimationTime ? Math.min(64,time - lastAnimationTime) : 16.7;
+  lastAnimationTime = time;
+  if (reducedMotion.matches) {
+    journeyProgress = targetJourneyProgress;
+    scrollEnergy = 0;
+  } else {
+    const easedStep = 1 - Math.exp(-deltaTime / SCROLL_EASE_MS);
+    journeyProgress += (targetJourneyProgress - journeyProgress) * easedStep;
+    if (Math.abs(targetJourneyProgress - journeyProgress) < .00004) journeyProgress = targetJourneyProgress;
+    scrollEnergy *= Math.exp(-deltaTime / SCROLL_ENERGY_DECAY_MS);
+    if (scrollEnergy < .002) scrollEnergy = 0;
+  }
+  applyDescentState();
   if (reducedMotion.matches || time - lastDrawTime > 32) {
     renderDescent(time);
     lastDrawTime = time;
@@ -321,14 +357,14 @@ const animationLoop = (time) => {
 };
 
 const requestJourneyFrame = () => {
-  updateDescentState();
+  updateDescentTarget();
   if (!animationFrame) animationFrame = requestAnimationFrame(animationLoop);
 };
 
 const journeyObserver = new IntersectionObserver(([entry]) => {
   journeyVisible = entry.isIntersecting;
   if (journeyVisible) requestJourneyFrame();
-  else if (animationFrame) { cancelAnimationFrame(animationFrame); animationFrame = 0; }
+  else if (animationFrame) { cancelAnimationFrame(animationFrame); animationFrame = 0; lastAnimationTime = 0; }
 }, { rootMargin:'15% 0px' });
 journeyObserver.observe(descent);
 

@@ -123,7 +123,7 @@ Chosen architecture for the first complete implementation:
 
 - **HTML** preserves accessible content and introduces a dedicated cinematic prologue, semantic scene labels, visual transition layers, and a narrative finale around existing informational sections.
 - **CSS** provides layered atmosphere, sticky/pinned-style scene staging, masks, perspective, gradients, responsive layouts, low-cost motion, and reduced-motion/static treatments.
-- **JavaScript** centralizes scroll state in one `requestAnimationFrame` coordinator, uses `IntersectionObserver` to activate/deactivate scenes and one-time content reveals, updates CSS custom properties for scene progress, and preserves existing media controls.
+- **JavaScript** centralizes scroll state in one `requestAnimationFrame` coordinator, eases visual progress toward native scroll position with a decaying gesture impulse, uses `IntersectionObserver` to activate/deactivate scenes and one-time content reveals, updates CSS custom properties for scene progress, and preserves existing media controls.
 - **Canvas** provides a single procedural prologue backdrop for particles, filaments, dimensional geometry, collapse, cosmic depth, and galactic structure. Density and effects adapt to viewport size and reduced-motion preferences. The loop pauses when not visible and does not create a large DOM particle system.
 - **SVG/CSS assets** provide the stylized Earth, scalable Austin/river/bridge skyline, audience silhouettes, visitor form, energy paths, and quiet final light.
 - **No Three.js or GSAP initially.** The visual language can be delivered with one optimized canvas plus CSS/HTML while avoiding external dependencies and GitHub Pages fragility. This may evolve if a later measured limitation justifies it.
@@ -211,7 +211,7 @@ Maintain a practical architecture guide covering scene/content mapping, animatio
 - [x] No console errors, missing assets, broken URLs, horizontal overflow, or blocked controls in local testing.
 - [x] Refresh and direct navigation work at different scene positions.
 - [x] Performance audit: mobile particle/resolution caps, ~30 FPS canvas throttle, document visibility pause, prologue intersection pause, offscreen ambient-loop pause, lazy imagery, and WebP derivatives.
-- [x] GitHub Pages build and live deployment verified at `https://jfi-music.github.io/` from implementation commit `2d021df`.
+- [x] GitHub Pages build verified; the original implementation was commit `2d021df`. The canonical custom domain is configured as `www.jfimusic.com`; final HTTPS edge verification follows the inertial-motion deployment.
 
 ### Final audit
 
@@ -235,6 +235,8 @@ Maintain a practical architecture guide covering scene/content mapping, animatio
 - Pre-descent recoverable baseline: `e63f32c`.
 - Complete cinematic implementation: `2d021df`.
 - GitHub Pages build status: **built and visually verified live** on 2026-08-18.
+- Canonical custom domain: `https://www.jfimusic.com/` via repository `CNAME`, GitHub Pages settings, and matching metadata. DNS resolves to GitHub Pages; the pre-deploy HTTPS response was still a stale Wix/Fastly cache and must be rechecked after the build.
+- Motion refinement: native scroll remains accessible while visual progress eases toward its target; wheel/touch gestures add a decaying cinematic impulse to star streaks and the signal core.
 
 ## Current limitations and deliberate boundaries
 

@@ -2,7 +2,7 @@
   --black:#030204; --ink:#f7f4f8; --muted:#aaa5ad; --violet:#925cff; --pink:#ff3f9f; --blue:#55ceff; --gold:#ffc96a; --line:#29242f;
   --radius-xl:28px; --radius-lg:20px; --radius-md:14px; --radius-sm:10px;
   --bloom-violet:0 22px 65px #7644c638; --bloom-pink:0 10px 42px #fb287c20;
-  --journey:0; --fi-opacity:0; --earth-opacity:0; --austin-opacity:0; --receiver-opacity:0;
+  --journey:0; --journey-target:0; --scroll-energy:0; --fi-opacity:0; --earth-opacity:0; --austin-opacity:0; --receiver-opacity:0;
 }
 
 * { box-sizing:border-box; }
@@ -52,7 +52,7 @@ nav a:hover::after,nav a:focus-visible::after { transform:scaleX(1); }
 .descent-scene { position:relative; min-height:112svh; display:grid; align-items:center; padding:120px clamp(24px,8vw,140px); scroll-margin-top:70px; pointer-events:none; }
 .descent-scene a { pointer-events:auto; }
 .descent-scene .scene-copy { width:min(690px,78vw); }
-.js-ready .descent-scene .scene-copy { opacity:.08; filter:blur(10px); transform:translate3d(0,36px,0) scale(.98); transition:opacity .7s,filter .9s,transform .9s cubic-bezier(.2,.8,.2,1); }
+.js-ready .descent-scene .scene-copy { opacity:.08; filter:blur(10px); transform:translate3d(0,36px,0) scale(.98); transition:opacity 1.05s cubic-bezier(.16,1,.3,1),filter 1.15s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1); }
 .js-ready .descent-scene.is-current .scene-copy { opacity:1; filter:blur(0); transform:translate3d(0,0,0) scale(1); }
 .scene-copy-left { justify-self:start; }
 .scene-copy-right { justify-self:end; text-align:right; }

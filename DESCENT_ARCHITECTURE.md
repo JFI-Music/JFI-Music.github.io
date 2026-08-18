@@ -34,7 +34,12 @@ There is no package manager, framework, external animation dependency, or build 
 
 The seven prologue scenes use `.descent-scene { min-height:112svh; }`. Increase this value for slower scroll pacing or reduce it for a shorter journey. Phone pacing is set separately in the `max-width:800px` media query.
 
-Scroll-to-visual timing is centralized in `updateDescentState()` in `script.js`:
+Scroll-to-visual timing is centralized in `updateDescentTarget()` and `applyDescentState()` in `script.js`. Native scrolling remains untouched; it updates a target progress value and the visual journey eases toward it:
+
+- `SCROLL_EASE_MS` controls the exponential settling time. The current `520` ms time constant gives a wheel/touch gesture a roughly 1–2 second cinematic tail without making navigation feel disconnected.
+- `SCROLL_ENERGY_DECAY_MS` controls the temporary signal/star acceleration after an input gesture. The current value is `1100` ms.
+- `--journey-target` is the raw target and `--journey` is the eased visual position.
+- `--scroll-energy` is the decaying gesture impulse used by the star streak and signal glow.
 
 - `--fi-opacity`: Fi entrance and dissolve.
 - `--earth-opacity`: Earth approach.
@@ -84,7 +89,7 @@ GitHub Pages serves `main` from the repository root. No build command is require
 2. Check `index.html`, `styles.css`, and `script.js` cache keys when shipping material front-end changes.
 3. Commit and push `main`.
 4. Wait for the GitHub Pages build to report `built`.
-5. Verify the live HTML references the new cache keys and inspect `https://jfi-music.github.io/`.
+5. Verify the live HTML references the new cache keys and inspect `https://www.jfimusic.com/`.
 
 ## Effect disable switches
 
@@ -93,4 +98,3 @@ GitHub Pages serves `main` from the repository root. No build command is require
 - Austin overlay: `.austin-silhouette { display:none; }`
 - One-time reveals: remove `reveal-ready` from the root or set `.reveal-item { opacity:1; transform:none; }`
 - Ambient loops: remove `scene-active`; offscreen scenes already pause automatically.
-
