@@ -77,7 +77,7 @@ Phone landscape is supported as a reasonable compact cinematic view. Basic conte
 
 ## Reduced motion and progressive enhancement
 
-`prefers-reduced-motion: reduce` disables meaningful animation duration, preserves a static dimensional composition, resolves all scene copy, and leaves Fi/Earth/Austin/J layers readable. Canvas redraws only when scroll state changes instead of running continuously.
+`prefers-reduced-motion: reduce` disables meaningful animation duration, preserves a static dimensional composition, resolves all scene copy, and leaves Fi/Earth/Austin/J layers readable. Audience particles, crowd cores, the visitor core, and the final footer light remain as bright static points. Canvas redraws only when scroll state changes instead of running continuously.
 
 Without JavaScript, semantic content remains in document order, the scene copy is visible, the existing `<noscript>` treatment makes the sticky scene linear, and all contact/media information remains present. Custom audio controls require JavaScript; their underlying audio files remain declared in the HTML.
 
@@ -97,4 +97,4 @@ GitHub Pages serves `main` from the repository root. No build command is require
 - Fi overlay: `.fi-presence { display:none; }`
 - Austin overlay: `.austin-silhouette { display:none; }`
 - One-time reveals: remove `reveal-ready` from the root or set `.reveal-item { opacity:1; transform:none; }`
-- Ambient loops: remove `scene-active`; offscreen scenes already pause automatically.
+- Ambient loops: add `scene-dormant` to a scene to pause its loop; the intersection observer applies that state automatically when a scene leaves the extended viewport.

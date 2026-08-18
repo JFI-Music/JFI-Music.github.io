@@ -398,7 +398,7 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
 
 const ambientScenes = [...document.querySelectorAll('.music-player,.single-player,.audience-scene,.creator-finale,footer')];
 const ambientObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => entry.target.classList.toggle('scene-active',entry.isIntersecting));
+  entries.forEach((entry) => entry.target.classList.toggle('scene-dormant',!entry.isIntersecting));
 }, { rootMargin:'10% 0px', threshold:.05 });
 ambientScenes.forEach((scene) => ambientObserver.observe(scene));
 

@@ -125,7 +125,7 @@ Chosen architecture for the first complete implementation:
 - **CSS** provides layered atmosphere, sticky/pinned-style scene staging, masks, perspective, gradients, responsive layouts, low-cost motion, and reduced-motion/static treatments.
 - **JavaScript** centralizes scroll state in one `requestAnimationFrame` coordinator, eases visual progress toward native scroll position with a decaying gesture impulse, uses `IntersectionObserver` to activate/deactivate scenes and one-time content reveals, updates CSS custom properties for scene progress, and preserves existing media controls.
 - **Canvas** provides a single procedural prologue backdrop for particles, filaments, dimensional geometry, collapse, cosmic depth, and galactic structure. Density and effects adapt to viewport size and reduced-motion preferences. The loop pauses when not visible and does not create a large DOM particle system.
-- **SVG/CSS assets** provide the stylized Earth, scalable Austin/river/bridge skyline, audience silhouettes, visitor form, energy paths, and quiet final light.
+- **SVG/CSS assets** provide the stylized Earth, scalable Austin/river/bridge skyline, audience silhouettes, resilient particle/light cores, visitor form, energy paths, and quiet final light. Ambient light cycles remain visibly luminous at their dimmest phase, start active, and pause only after an observed scene moves offscreen so observer timing cannot freeze the payoff dark.
 - **No Three.js or GSAP initially.** The visual language can be delivered with one optimized canvas plus CSS/HTML while avoiding external dependencies and GitHub Pages fragility. This may evolve if a later measured limitation justifies it.
 - **Existing media assets** remain local. Non-critical images use native lazy loading where it does not harm the first scene. Existing video remains `preload="metadata"`.
 - **Progressive enhancement** ensures critical content remains readable without JavaScript. Reduced-motion receives composed static scenes rather than empty disabled states.
@@ -238,6 +238,7 @@ Maintain a practical architecture guide covering scene/content mapping, animatio
 - Canonical custom domain: `https://www.jfimusic.com/` via repository `CNAME`, GitHub Pages settings, and matching metadata. DNS resolves to GitHub Pages, the certificate validates on all tested Pages edges, and `https_enforced` is enabled. Individual clients may briefly retain the former Wix IP until their local DNS cache expires.
 - Inertial motion deployment: `abba5b0`; cache keys `20260818-inertia1`.
 - Motion refinement: native scroll remains accessible while visual progress eases toward its target; wheel/touch gestures add a decaying cinematic impulse to star streaks and the signal core.
+- Ambient-light restoration: audience particles and all nine internal crowd cores have a brighter always-visible floor, the final footer point breathes again, reduced-motion retains a luminous static composition, and offscreen pausing uses an explicit `scene-dormant` state; cache keys `20260818-ambient1`.
 
 ## Current limitations and deliberate boundaries
 
