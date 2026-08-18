@@ -30,7 +30,39 @@
       <a class="scroll-cue" href="#music" aria-label="Explore the music">↓</a>
     </section>
 
-    <section id="music" class="feature split">
+    <section id="music" class="playlist-section" aria-labelledby="playlist-title">
+      <div class="section-heading player-heading">
+        <p class="eyebrow">Additional music</p>
+        <h2 id="playlist-title">Dead Lover's Kill</h2>
+      </div>
+      <div class="music-player">
+        <img class="player-cover" src="assets/DEAD%20LOVER'S%20KILL_ALBUM.PNG" alt="Dead Lover's Kill album artwork">
+        <div class="now-playing" aria-live="polite">
+          <strong id="current-track-title">Yet to Become</strong>
+          <span>J Fi / Dead Lover's Kill</span>
+        </div>
+        <audio id="playlist-audio" preload="metadata" src="assets/musicPlayerAssets/01-yet-to-become.mp3"></audio>
+        <div class="player-progress">
+          <span id="elapsed-time">00:00</span>
+          <input id="track-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Track progress">
+          <span id="total-time">03:11</span>
+        </div>
+        <div class="player-controls">
+          <button id="previous-track" type="button" aria-label="Previous track">‹</button>
+          <button id="play-track" class="play-button" type="button" aria-label="Play Yet to Become">▶</button>
+          <button id="next-track" type="button" aria-label="Next track">›</button>
+        </div>
+        <ol class="track-list" aria-label="Dead Lover's Kill playlist">
+          <li><button class="track-choice active" type="button" data-track="0"><span><b>01</b> Yet to Become</span><time>03:11</time></button></li>
+          <li><button class="track-choice" type="button" data-track="1"><span><b>02</b> Destroy the Girl</span><time>04:06</time></button></li>
+          <li><button class="track-choice" type="button" data-track="2"><span><b>03</b> Every Thousand Years</span><time>03:35</time></button></li>
+          <li><button class="track-choice" type="button" data-track="3"><span><b>04</b> My Origin Story</span><time>03:26</time></button></li>
+          <li><button class="track-choice" type="button" data-track="4"><span><b>05</b> Of a Lifetime</span><time>06:12</time></button></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="single" class="feature split">
       <div class="art-frame"><img src="assets/CITY OF THE VIOLET CROWN.PNG" alt="City of the Violet Crown single artwork"></div>
       <div class="feature-copy">
         <p class="eyebrow">The new single</p>
@@ -90,4 +122,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-

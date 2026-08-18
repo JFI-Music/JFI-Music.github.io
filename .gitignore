@@ -12,3 +12,6 @@ assets/JFI_catalog_products.csv
 
 # Keep unused source assets local unless deliberately force-added.
 assets/*
+!assets/musicPlayerAssets/
+!assets/musicPlayerAssets/*.mp3
+!assets/DEAD LOVER'S KILL_ALBUM.PNG
