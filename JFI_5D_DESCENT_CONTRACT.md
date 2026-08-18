@@ -147,7 +147,7 @@ Existing assets are inventoried after this contract is created and before implem
 ### Original/procedural assets
 
 - `assets/5d/fi-signal-portrait.webp` — original generated abstract Fi/divine-intelligence portrait, used as a transient signal presence rather than a literal angel. **Complete; 1122×1402, 78 KB WebP.**
-- `assets/5d/austin-violet-silhouette.svg` — original scalable mythological Austin/Hill Country/Capitol/Pennybacker Bridge/river layer with violet energy path. **Complete.**
+- `assets/5d/austin-violet-silhouette.svg` — original scalable mythological Austin/Hill Country/river layer with an architecturally legible Frost Bank Tower, Austonian, Texas Capitol, and reconstructed Pennybacker/360 Bridge, all threaded by the violet energy path. **Redrawn and complete; asset cache key `20260818-austin2`.**
 - Procedural canvas visuals — dimensional geometry, particles, filament, stars, galaxy, and signal core. Generated at runtime; no binary asset. **Complete.**
 - CSS visual assets — stylized Earth/orbit, audience silhouettes with internal light, visitor form/core, and final breathing light. **Complete.**
 

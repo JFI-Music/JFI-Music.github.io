@@ -65,7 +65,7 @@ To disable the canvas only, hide `#descent-canvas`; the CSS scene layers and all
 ## Replacing artwork
 
 - Replace Fi at `assets/5d/fi-signal-portrait.webp` with the same dark-edge, portrait-oriented composition.
-- Edit `assets/5d/austin-violet-silhouette.svg` directly for skyline/bridge/river changes.
+- Edit `assets/5d/austin-violet-silhouette.svg` directly for skyline/bridge/river changes. The landmark groups are named `frost-bank-tower`, `the-austonian`, `texas-capitol`, and `pennybacker-bridge`; preserve their recognizable crown, curved profile, civic dome, and suspended-arch structure when restyling.
 - Preserve original JFI source masters in `assets/`. Create a new derivative in `assets/web/` and update the relevant `src` in `index.html`.
 - Keep first-scene files small; later images can use `loading="lazy"`.
 
