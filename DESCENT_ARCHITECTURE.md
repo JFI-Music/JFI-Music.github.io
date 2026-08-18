@@ -56,7 +56,7 @@ The canvas renderer is deliberately small and dependency-free:
 - `drawStars()` — depth layers and restrained acceleration.
 - `drawGalaxy()` — crystallized spiral structure.
 - `drawSignal()` — the guiding filament/core.
-- `drawBats()` — a deterministic 24-bat desktop / 15-bat mobile swarm whose flight position is driven by Austin-scene scroll progress; reduced-motion receives six stationary silhouettes.
+- `drawBats()` — a deterministic 24-bat desktop / 15-bat mobile swarm whose four lanes share one upward-left curve driven by Austin-scene scroll progress; reduced-motion receives six stationary silhouettes.
 - `drawAtmosphere()` — darkness and violet dimensional air.
 
 Desktop uses up to 150 stars and a device-pixel-ratio cap of 1.6. Phone uses 75 stars and a cap of 1.25. Rendering targets roughly 30 FPS, pauses outside `#descent`, and pauses when the document is hidden.

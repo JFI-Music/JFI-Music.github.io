@@ -167,15 +167,18 @@ const galaxyPoints = Array.from({ length:190 }, (_, index) => {
   return { radius, angle:arm * Math.PI * 2 / 3 + radius * 7.2 + (seededRandom(index + 521) - .5) * .65, size:.4 + seededRandom(index + 631) * 1.5 };
 });
 
-const bats = Array.from({ length:24 }, (_, index) => ({
-  start:seededRandom(index + 719) * .42,
-  angle:Math.PI * (1.05 + seededRandom(index + 761) * .86),
-  travel:.34 + seededRandom(index + 809) * .72,
-  size:4.3 + seededRandom(index + 857) * 5.6,
-  curve:(seededRandom(index + 911) - .5) * .2,
-  phase:seededRandom(index + 967) * Math.PI * 2,
-  tone:index % 3,
-}));
+const bats = Array.from({ length:24 }, (_, index) => {
+  const column = index % 4;
+  const row = Math.floor(index / 4);
+  return {
+    start:.04 + row * .105 + column * .014,
+    lane:column - 1.5,
+    row,
+    size:4.3 + seededRandom(index + 857) * 5.6,
+    phase:seededRandom(index + 967) * Math.PI * 2,
+    tone:index % 3,
+  };
+});
 
 const measureDescent = () => {
   const scrollY = window.scrollY;
@@ -340,10 +343,11 @@ const drawBats = (progressValue,time) => {
     const local = clamp((swarmProgress - bat.start) / Math.max(.01,1 - bat.start));
     if (local <= 0) return;
     const motion = 1 - Math.pow(1 - local,2.35);
-    const distance = fieldScale * bat.travel * motion;
-    const arc = Math.sin(motion * Math.PI) * bat.curve * canvasWidth;
-    const x = originX + Math.cos(bat.angle) * distance + arc;
-    const y = originY + Math.sin(bat.angle) * distance - motion * motion * canvasHeight * .035;
+    const corridorWidth = (7 + motion * 13) * (mobile ? .72 : 1);
+    const laneOffset = bat.lane * corridorWidth;
+    const sharedArc = Math.sin(motion * Math.PI) * fieldScale * .07;
+    const x = originX - fieldScale * (.16 * motion + .48 * Math.pow(motion,1.18)) - sharedArc + laneOffset;
+    const y = originY - fieldScale * (.24 * motion + .48 * Math.pow(motion,1.12)) + laneOffset * .28 + Math.sin((bat.row + 1) * 1.7) * 2;
     const opacity = sceneOpacity * smoothstep(0,.13,local) * (.56 + seededRandom(bat.phase + 37) * .4);
     drawBat(bat,x,y,motion,time,opacity);
   });
