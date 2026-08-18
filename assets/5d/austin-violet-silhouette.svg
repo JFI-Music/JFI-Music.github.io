@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" role="img" aria-labelledby="title desc">
+  <title id="title">Mythological Austin skyline at night</title>
+  <desc id="desc">Hill Country, Pennybacker Bridge, the Austin skyline, Capitol dome, river, and violet signal paths rendered as a dark luminous silhouette.</desc>
+  <defs>
+    <linearGradient id="skyline" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#25133b"/>
+      <stop offset="1" stop-color="#05040a"/>
+    </linearGradient>
+    <linearGradient id="river" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#06040c"/>
+      <stop offset=".42" stop-color="#28164b"/>
+      <stop offset=".68" stop-color="#0b3b58"/>
+      <stop offset="1" stop-color="#07040d"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#7a42ff"/>
+      <stop offset=".5" stop-color="#ff3ea5"/>
+      <stop offset="1" stop-color="#56d9ff"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-80%" width="180%" height="260%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <path d="M0 315 110 280 205 300 315 245 430 290 520 260 620 305 0 356Z" fill="#08060e"/>
+  <path d="M0 342h94v-58h20v58h31v-112h46v112h42v-78h26v78h42v-136h55v136h33v-92h31v92h45v-54h43v54h34v-174h50v174h35v-99h30v99h30v-66h26v66h25v-108h26v108h35v-62h22v62h30v-142h31v142h30v-73h24v73h28v-121h31v121h44v-64h24v64h38v-89h46v89h58v-44h46v44h80v86H0Z" fill="url(#skyline)"/>
+  <g fill="#120b21" stroke="#6f49a8" stroke-width="2" opacity=".9">
+    <path d="M767 342v-120h20v-35h12v-31h12v31h12v35h21v120Z"/>
+    <path d="M778 222q27-46 55 0Z"/>
+    <path d="M797 156h15v-28h-15z"/>
+  </g>
+  <g fill="none" stroke="#181020" stroke-width="17">
+    <path d="M1035 328q134-209 283 0"/>
+    <path d="M1024 335h315"/>
+  </g>
+  <g fill="none" stroke="#8b5aca" stroke-width="2" opacity=".75">
+    <path d="M1035 328q134-209 283 0"/>
+    <path d="m1091 259-26 69m86-123-31 123m91-134 29 134m32-83 27 83"/>
+  </g>
+  <path d="M0 348q260 36 505 4t430 6q300 42 665-7v169H0Z" fill="url(#river)"/>
+  <path d="M-20 384q230-48 430 5t371-2q215-62 408 2t431-5" fill="none" stroke="url(#signal)" stroke-width="5" opacity=".85" filter="url(#glow)"/>
+  <path d="M65 420q210-36 397 1t351-3q192-44 352 3t372-6" fill="none" stroke="#7c5cff" stroke-width="1.5" opacity=".5"/>
+  <g fill="#ff76bc" opacity=".9">
+    <circle cx="118" cy="320" r="2"/><circle cx="362" cy="276" r="2"/><circle cx="589" cy="311" r="2"/><circle cx="808" cy="244" r="3"/><circle cx="934" cy="297" r="2"/><circle cx="1188" cy="289" r="2"/><circle cx="1455" cy="319" r="2"/>
+  </g>
+</svg>
