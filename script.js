@@ -70,4 +70,60 @@ progress.addEventListener('input', () => {
   if (player.duration) player.currentTime = (Number(progress.value) / 100) * player.duration;
 });
 
+const singleAudio = document.querySelector('#single-audio');
+const singlePlay = document.querySelector('#single-play');
+const singleProgress = document.querySelector('#single-track-progress');
+const singleElapsed = document.querySelector('#single-elapsed');
+const singleTotal = document.querySelector('#single-total');
+
+const syncSingleButton = () => {
+  singlePlay.textContent = singleAudio.paused ? '▶' : 'Ⅱ';
+  singlePlay.setAttribute('aria-label', `${singleAudio.paused ? 'Play' : 'Pause'} City of the Violet Crown`);
+};
+
+singlePlay.addEventListener('click', () => (singleAudio.paused ? singleAudio.play() : singleAudio.pause()));
+singleAudio.addEventListener('play', () => {
+  if (!player.paused) player.pause();
+  syncSingleButton();
+});
+player.addEventListener('play', () => {
+  if (!singleAudio.paused) singleAudio.pause();
+});
+singleAudio.addEventListener('pause', syncSingleButton);
+singleAudio.addEventListener('loadedmetadata', () => {
+  singleTotal.textContent = formatTime(singleAudio.duration);
+});
+singleAudio.addEventListener('timeupdate', () => {
+  singleElapsed.textContent = formatTime(singleAudio.currentTime);
+  singleProgress.value = singleAudio.duration ? (singleAudio.currentTime / singleAudio.duration) * 100 : 0;
+});
+singleProgress.addEventListener('input', () => {
+  if (singleAudio.duration) singleAudio.currentTime = (Number(singleProgress.value) / 100) * singleAudio.duration;
+});
+
+const revealItems = [
+  ...document.querySelectorAll('.hero > *:not(.scroll-cue), .section-heading, .music-player, .split > *, .video-shell, .story > *, .highlights > *, .gallery img, .contact > *, footer > *'),
+];
+
+revealItems.forEach((item, index) => {
+  item.classList.add('reveal-item');
+  if (item.matches('.split > :first-child, .story > :first-child')) item.classList.add('reveal-left');
+  if (item.matches('.split > :last-child, .story > :last-child')) item.classList.add('reveal-right');
+  item.style.setProperty('--reveal-delay', `${(index % 3) * 90}ms`);
+});
+document.documentElement.classList.add('reveal-ready');
+
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.14, rootMargin: '0px 0px -6% 0px' });
+  requestAnimationFrame(() => revealItems.forEach((item) => revealObserver.observe(item)));
+} else {
+  revealItems.forEach((item) => item.classList.add('is-visible'));
+}
+
 document.querySelector('#year').textContent = new Date().getFullYear();

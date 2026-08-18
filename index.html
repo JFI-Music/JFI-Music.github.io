@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Orbitron:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260818-media-polish1">
+  <link rel="stylesheet" href="styles.css?v=20260818-player-motion1">
 </head>
 <body>
   <header class="site-header">
@@ -88,7 +88,21 @@
         <p class="eyebrow">The new single</p>
         <h2>City of the<br>Violet Crown</h2>
         <p>From <em>Dead Lover's Kill</em></p>
-        <audio controls preload="metadata"><source src="assets/JFI%20-DEAD%20LOVER'S%20KILL-%2002_CITY%20OF%20THE%20VIOLET%20CROWN.mp3" type="audio/mpeg"></audio>
+        <div class="single-player" aria-label="City of the Violet Crown music player">
+          <div class="now-playing" aria-live="polite">
+            <strong>City of the Violet Crown</strong>
+            <span>J Fi / Dead Lover's Kill</span>
+          </div>
+          <audio id="single-audio" preload="metadata" src="assets/JFI%20-DEAD%20LOVER'S%20KILL-%2002_CITY%20OF%20THE%20VIOLET%20CROWN.mp3"></audio>
+          <div class="player-progress single-progress">
+            <span id="single-elapsed">00:00</span>
+            <input id="single-track-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="City of the Violet Crown progress">
+            <span id="single-total">03:57</span>
+          </div>
+          <div class="player-controls single-controls">
+            <button id="single-play" class="play-button" type="button" aria-label="Play City of the Violet Crown">▶</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -146,6 +160,6 @@
     <strong>Let's do this!!!</strong>
     <p class="copyright">© <span id="year"></span> JFI Music</p>
   </footer>
-  <script src="script.js?v=20260818-cosmic1"></script>
+  <script src="script.js?v=20260818-player-motion1"></script>
 </body>
 </html>
