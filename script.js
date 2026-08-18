@@ -167,6 +167,16 @@ const galaxyPoints = Array.from({ length:190 }, (_, index) => {
   return { radius, angle:arm * Math.PI * 2 / 3 + radius * 7.2 + (seededRandom(index + 521) - .5) * .65, size:.4 + seededRandom(index + 631) * 1.5 };
 });
 
+const bats = Array.from({ length:24 }, (_, index) => ({
+  start:seededRandom(index + 719) * .42,
+  angle:Math.PI * (1.05 + seededRandom(index + 761) * .86),
+  travel:.34 + seededRandom(index + 809) * .72,
+  size:4.3 + seededRandom(index + 857) * 5.6,
+  curve:(seededRandom(index + 911) - .5) * .2,
+  phase:seededRandom(index + 967) * Math.PI * 2,
+  tone:index % 3,
+}));
+
 const measureDescent = () => {
   const scrollY = window.scrollY;
   descentTop = descent.getBoundingClientRect().top + scrollY;
@@ -283,6 +293,63 @@ const drawSignal = (progressValue, time) => {
   context.restore();
 };
 
+const drawBat = (bat,x,y,motion,time,opacity) => {
+  const wing = reducedMotion.matches ? .58 : .28 + Math.abs(Math.sin(time * .0085 + bat.phase + motion * 8.5)) * .72;
+  const size = bat.size * (.72 + motion * .38);
+  const rotation = Math.sin(bat.phase + motion * 3.2) * .18;
+  const stroke = bat.tone === 0 ? '183,124,255' : bat.tone === 1 ? '255,103,183' : '103,207,255';
+  context.save();
+  context.translate(x,y);
+  context.rotate(rotation);
+  context.globalAlpha = opacity;
+  context.shadowBlur = 7;
+  context.shadowColor = `rgba(${stroke},.55)`;
+  context.fillStyle = 'rgba(3,2,8,.96)';
+  context.strokeStyle = `rgba(${stroke},.82)`;
+  context.lineWidth = Math.max(.65,size * .085);
+  context.beginPath();
+  context.moveTo(0,size * .16);
+  context.bezierCurveTo(-size * .2,-size * .08,-size * .55,-size * wing,-size,-size * .12);
+  context.bezierCurveTo(-size * .78,size * .04,-size * .57,size * .34,-size * .28,size * .19);
+  context.lineTo(0,size * .48);
+  context.lineTo(size * .28,size * .19);
+  context.bezierCurveTo(size * .57,size * .34,size * .78,size * .04,size,-size * .12);
+  context.bezierCurveTo(size * .55,-size * wing,size * .2,-size * .08,0,size * .16);
+  context.closePath();
+  context.fill();
+  context.stroke();
+  context.beginPath();
+  context.moveTo(-size * .1,size * .04); context.lineTo(-size * .03,-size * .22); context.lineTo(0,-size * .05);
+  context.lineTo(size * .03,-size * .22); context.lineTo(size * .1,size * .04);
+  context.stroke();
+  context.restore();
+};
+
+const drawBats = (progressValue,time) => {
+  const sceneOpacity = bell(progressValue,.69,.84,.985);
+  if (sceneOpacity <= .01) return;
+  const mobile = canvasWidth < 800;
+  const count = reducedMotion.matches ? 6 : mobile ? 15 : bats.length;
+  const swarmProgress = reducedMotion.matches ? .72 : smoothstep(.705,.92,progressValue);
+  const originX = canvasWidth * (mobile ? .89 : .815);
+  const originY = canvasHeight * .785;
+  const fieldScale = Math.min(canvasWidth,canvasHeight);
+  context.save();
+  context.globalCompositeOperation = 'source-over';
+  bats.slice(0,count).forEach((bat) => {
+    const local = clamp((swarmProgress - bat.start) / Math.max(.01,1 - bat.start));
+    if (local <= 0) return;
+    const motion = 1 - Math.pow(1 - local,2.35);
+    const distance = fieldScale * bat.travel * motion;
+    const arc = Math.sin(motion * Math.PI) * bat.curve * canvasWidth;
+    const x = originX + Math.cos(bat.angle) * distance + arc;
+    const y = originY + Math.sin(bat.angle) * distance - motion * motion * canvasHeight * .035;
+    const opacity = sceneOpacity * smoothstep(0,.13,local) * (.56 + seededRandom(bat.phase + 37) * .4);
+    drawBat(bat,x,y,motion,time,opacity);
+  });
+  context.restore();
+};
+
 const renderDescent = (time = 0) => {
   if (!context) return;
   context.setTransform(pixelRatio,0,0,pixelRatio,0,0);
@@ -291,6 +358,7 @@ const renderDescent = (time = 0) => {
   drawGeometry(journeyProgress,time);
   drawGalaxy(journeyProgress,time);
   drawSignal(journeyProgress,time);
+  drawBats(journeyProgress,time);
 };
 
 const setActiveScene = (localCenter) => {

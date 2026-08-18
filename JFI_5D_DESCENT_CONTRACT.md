@@ -74,7 +74,7 @@ Deep cosmos narrows toward a galaxy, local stellar environment, and stylized Ear
 
 ### Scene 6 — City of the Violet Crown
 
-The signal arrives in mythological Austin at night: violet horizon, skyline, Capitol, Pennybacker/360 Bridge, river, Hill Country silhouettes, and energy threading through the city. Existing City of the Violet Crown artwork anchors continuity. This is not tourism; Austin is a spiritual/cosmic node receiving something.
+The signal arrives in mythological Austin at night: violet horizon, skyline, Capitol, Pennybacker/360 Bridge, river, Hill Country silhouettes, and energy threading through the city. A scroll-driven bat swarm emerges from the bridge and fans into the violet sky, grounding the cosmic node in Austin's living dusk ritual. Existing City of the Violet Crown artwork anchors continuity. This is not tourism; Austin is a spiritual/cosmic node receiving something.
 
 ### Scene 7 — The Signal Enters J
 
@@ -148,7 +148,7 @@ Existing assets are inventoried after this contract is created and before implem
 
 - `assets/5d/fi-signal-portrait.webp` — original generated abstract Fi/divine-intelligence portrait, used as a transient signal presence rather than a literal angel. **Complete; 1122×1402, 78 KB WebP.**
 - `assets/5d/austin-violet-silhouette.svg` — original scalable mythological Austin/Hill Country/river layer with an architecturally legible Frost Bank Tower, Austonian, Texas Capitol, and reconstructed Pennybacker/360 Bridge, all threaded by the violet energy path. **Redrawn and complete; asset cache key `20260818-austin2`.**
-- Procedural canvas visuals — dimensional geometry, particles, filament, stars, galaxy, and signal core. Generated at runtime; no binary asset. **Complete.**
+- Procedural canvas visuals — dimensional geometry, particles, filament, stars, galaxy, signal core, and deterministic scroll-driven Austin bat swarm. Generated at runtime; no binary asset. **Complete.**
 - CSS visual assets — stylized Earth/orbit, audience silhouettes with internal light, visitor form/core, and final breathing light. **Complete.**
 
 ### Performance derivatives of approved JFI masters
@@ -241,6 +241,7 @@ Maintain a practical architecture guide covering scene/content mapping, animatio
 - Ambient-light restoration: audience particles and all nine internal crowd cores have a brighter always-visible floor, the final footer point breathes again, reduced-motion retains a luminous static composition, and offscreen pausing uses an explicit `scene-dormant` state; cache keys `20260818-ambient1`.
 - Audience-core refinement: the floating particle field and multicolor crowd blooms are preserved; each audience silhouette now carries a separate white-hot center layered above its colored halo so the narrative light never reads as a dark disc; stylesheet cache key `20260818-audiencecore1`.
 - Desktop color-integrity refinement: the authored dark palette now declares a dark-only color scheme and opts out of third-party Dark Reader recoloring; luminous audience/particle cores also resist forced-color substitution. This preserves the approved mobile appearance on desktop without changing particle placement, motion, or bloom colors; stylesheet cache key `20260818-desktoplights1`.
+- Austin bat-swarm refinement: 24 deterministic desktop bats (15 on mobile) emerge from the Pennybacker span and fan into the violet sky according to eased journey progress; wingbeats remain ambient, trajectories reverse naturally with scroll, and reduced-motion receives six stationary silhouettes. Script cache key `20260818-bats1`.
 
 ## Current limitations and deliberate boundaries
 
