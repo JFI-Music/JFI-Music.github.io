@@ -15,3 +15,5 @@ assets/*
 !assets/musicPlayerAssets/
 !assets/musicPlayerAssets/*.mp3
 !assets/DEAD LOVER'S KILL_ALBUM.PNG
+!assets/videoAssets/
+!assets/videoAssets/*
