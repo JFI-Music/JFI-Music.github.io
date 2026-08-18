@@ -169,11 +169,9 @@ const galaxyPoints = Array.from({ length:190 }, (_, index) => {
 
 const bats = Array.from({ length:24 }, (_, index) => {
   const column = index % 4;
-  const row = Math.floor(index / 4);
   return {
-    start:.04 + row * .105 + column * .014,
+    start:.02 + index * .033,
     lane:column - 1.5,
-    row,
     size:4.3 + seededRandom(index + 857) * 5.6,
     phase:seededRandom(index + 967) * Math.PI * 2,
     tone:index % 3,
@@ -333,7 +331,7 @@ const drawBats = (progressValue,time) => {
   if (sceneOpacity <= .01) return;
   const mobile = canvasWidth < 800;
   const count = reducedMotion.matches ? 6 : mobile ? 15 : bats.length;
-  const swarmProgress = reducedMotion.matches ? .72 : smoothstep(.705,.92,progressValue);
+  const swarmProgress = reducedMotion.matches ? .72 : smoothstep(.69,.965,progressValue);
   const originX = canvasWidth * (mobile ? .89 : .815);
   const originY = canvasHeight * .785;
   const fieldScale = Math.min(canvasWidth,canvasHeight);
@@ -342,12 +340,12 @@ const drawBats = (progressValue,time) => {
   bats.slice(0,count).forEach((bat) => {
     const local = clamp((swarmProgress - bat.start) / Math.max(.01,1 - bat.start));
     if (local <= 0) return;
-    const motion = 1 - Math.pow(1 - local,2.35);
-    const corridorWidth = (7 + motion * 13) * (mobile ? .72 : 1);
+    const motion = smoothstep(0,1,local);
+    const corridorWidth = (6 + motion * 10) * (mobile ? .72 : 1);
     const laneOffset = bat.lane * corridorWidth;
-    const sharedArc = Math.sin(motion * Math.PI) * fieldScale * .07;
-    const x = originX - fieldScale * (.16 * motion + .48 * Math.pow(motion,1.18)) - sharedArc + laneOffset;
-    const y = originY - fieldScale * (.24 * motion + .48 * Math.pow(motion,1.12)) + laneOffset * .28 + Math.sin((bat.row + 1) * 1.7) * 2;
+    const sharedZig = Math.sin(motion * Math.PI * 4) * fieldScale * .035 * smoothstep(0,.15,motion);
+    const x = originX - fieldScale * .58 * motion + laneOffset * .55;
+    const y = originY - fieldScale * .26 * motion + sharedZig + laneOffset * .32;
     const opacity = sceneOpacity * smoothstep(0,.13,local) * (.56 + seededRandom(bat.phase + 37) * .4);
     drawBat(bat,x,y,motion,time,opacity);
   });
