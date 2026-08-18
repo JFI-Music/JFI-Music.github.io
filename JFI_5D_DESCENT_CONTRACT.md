@@ -239,6 +239,7 @@ Maintain a practical architecture guide covering scene/content mapping, animatio
 - Inertial motion deployment: `abba5b0`; cache keys `20260818-inertia1`.
 - Motion refinement: native scroll remains accessible while visual progress eases toward its target; wheel/touch gestures add a decaying cinematic impulse to star streaks and the signal core.
 - Ambient-light restoration: audience particles and all nine internal crowd cores have a brighter always-visible floor, the final footer point breathes again, reduced-motion retains a luminous static composition, and offscreen pausing uses an explicit `scene-dormant` state; cache keys `20260818-ambient1`.
+- Audience-core refinement: the floating particle field and multicolor crowd blooms are preserved; each audience silhouette now carries a separate white-hot center layered above its colored halo so the narrative light never reads as a dark disc; stylesheet cache key `20260818-audiencecore1`.
 
 ## Current limitations and deliberate boundaries
 

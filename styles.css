@@ -161,7 +161,8 @@ nav a:hover::after,nav a:focus-visible::after { transform:scaleX(1); }
 .crowd { position:absolute; z-index:1; inset:auto 0 0; height:310px; display:flex; justify-content:center; align-items:end; gap:clamp(5px,2vw,35px); }
 .crowd i { position:relative; display:block; width:clamp(48px,8vw,105px); height:clamp(140px,20vw,250px); border-radius:50% 50% 12% 12% / 24% 24% 8% 8%; background:linear-gradient(90deg,#020203,#0d0812 50%,#020203); box-shadow:inset 0 0 35px #a642df12; }
 .crowd i::before { content:""; position:absolute; left:50%; top:29%; width:8px; aspect-ratio:1; border-radius:50%; background:#fff; transform:translate(-50%,-50%); box-shadow:0 0 10px 3px #fff,0 0 38px 10px var(--pink),0 0 86px 20px var(--violet); animation:audiencePulse 3.7s ease-in-out infinite; }
-.crowd i:nth-child(2n){height:72%}.crowd i:nth-child(3n){height:88%}.crowd i:nth-child(2n)::before{animation-delay:-1.2s;box-shadow:0 0 10px 3px #fff,0 0 38px 10px var(--blue),0 0 86px 20px var(--violet)}.crowd i:nth-child(3n)::before{animation-delay:-2.3s;box-shadow:0 0 10px 3px #fff,0 0 38px 10px var(--gold),0 0 86px 20px var(--pink)}
+.crowd i::after { content:""; position:absolute; z-index:2; left:50%; top:29%; width:6px; aspect-ratio:1; border:1px solid #fff; border-radius:50%; background:#fff; transform:translate(-50%,-50%); box-shadow:0 0 5px 2px #fff,0 0 12px 4px #ffffffb8; animation:audienceCorePulse 3.7s ease-in-out infinite; }
+.crowd i:nth-child(2n){height:72%}.crowd i:nth-child(3n){height:88%}.crowd i:nth-child(2n)::before{animation-delay:-1.2s;box-shadow:0 0 10px 3px #fff,0 0 38px 10px var(--blue),0 0 86px 20px var(--violet)}.crowd i:nth-child(3n)::before{animation-delay:-2.3s;box-shadow:0 0 10px 3px #fff,0 0 38px 10px var(--gold),0 0 86px 20px var(--pink)}.crowd i:nth-child(2n)::after{animation-delay:-1.2s}.crowd i:nth-child(3n)::after{animation-delay:-2.3s}
 .creator-finale { position:relative; min-height:125svh; display:grid; place-items:center; overflow:hidden; padding:150px 24px; background:radial-gradient(circle at 50% 43%,#29163e 0,#08040d 27%,#020203 65%); text-align:center; }
 .visitor-form { position:absolute; left:50%; top:51%; width:min(55vw,620px); height:min(82vh,790px); transform:translate(-50%,-50%); border:1px solid #b67dff1e; border-radius:48% 48% 42% 42% / 30% 30% 62% 62%; box-shadow:inset 0 0 120px #8e49d315,0 0 90px #7331a512; }
 .visitor-form::before { content:""; position:absolute; left:50%; top:-2%; width:31%; aspect-ratio:1; border:1px solid #ca9bff33; border-radius:50%; transform:translateX(-50%); box-shadow:inset 0 0 50px #a65cff12; }
@@ -180,7 +181,7 @@ footer blockquote { max-width:1100px; margin:50px auto; color:#d8d1dc; font:400 
 footer>p:not(.thank-you,.copyright) { max-width:840px; margin:0 auto 25px; color:#aaa5ac; }
 .thank-you { font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; }
 .final-light { width:10px; aspect-ratio:1; margin:75px auto 0; border-radius:50%; background:#fff; box-shadow:0 0 10px 3px #fff,0 0 44px 12px var(--violet),0 0 100px 24px var(--pink); animation:finalPulse 5s ease-in-out infinite; }
-.music-player.scene-dormant,.single-player.scene-dormant,.music-player.scene-dormant::before,.single-player.scene-dormant::before,.audience-scene.scene-dormant .audience-atmosphere::before,.audience-scene.scene-dormant .audience-atmosphere span,.audience-scene.scene-dormant .crowd i::before,.creator-finale.scene-dormant .visitor-core,footer.scene-dormant .final-light { animation-play-state:paused; }
+.music-player.scene-dormant,.single-player.scene-dormant,.music-player.scene-dormant::before,.single-player.scene-dormant::before,.audience-scene.scene-dormant .audience-atmosphere::before,.audience-scene.scene-dormant .audience-atmosphere span,.audience-scene.scene-dormant .crowd i::before,.audience-scene.scene-dormant .crowd i::after,.creator-finale.scene-dormant .visitor-core,footer.scene-dormant .final-light { animation-play-state:paused; }
 .copyright { margin-top:80px; color:#555; font-size:.7rem; letter-spacing:.15em; }
 
 /* One-time reveals outside the continuous prologue */
@@ -195,6 +196,7 @@ footer>p:not(.thank-you,.copyright) { max-width:840px; margin:0 auto 25px; color
 @keyframes particleVeil { 0%{transform:translate3d(-5px,8px,0);opacity:.58}50%{opacity:.9}100%{transform:translate3d(7px,-10px,0);opacity:.7} }
 @keyframes floatLight { 0%,100%{transform:translateY(0) scale(.88);opacity:.72}50%{transform:translateY(-28px) scale(1.12);opacity:1} }
 @keyframes audiencePulse { 0%,100%{opacity:.78;transform:translate(-50%,-50%) scale(.82)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.38)} }
+@keyframes audienceCorePulse { 0%,100%{opacity:.96;transform:translate(-50%,-50%) scale(.84)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)} }
 @keyframes finalPulse { 0%,100%{opacity:.82;transform:scale(.86)}50%{opacity:1;transform:scale(1.18)} }
 @keyframes visitorPulse { 0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(.88)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)} }
 
@@ -262,5 +264,5 @@ footer>p:not(.thank-you,.copyright) { max-width:840px; margin:0 auto 25px; color
   .fi-presence { opacity:calc(var(--fi-opacity) * .82); transform:translateX(-50%); }
   .austin-silhouette,.j-receiver { transform:none; }
   .reveal-ready .reveal-item { opacity:1; transform:none; transition:none; }
-  .audience-atmosphere::before,.audience-atmosphere span,.crowd i::before,.visitor-core,.final-light { animation:none!important; opacity:1!important; }
+  .audience-atmosphere::before,.audience-atmosphere span,.crowd i::before,.crowd i::after,.visitor-core,.final-light { animation:none!important; opacity:1!important; }
 }
