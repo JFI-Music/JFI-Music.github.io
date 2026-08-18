@@ -211,7 +211,7 @@ Maintain a practical architecture guide covering scene/content mapping, animatio
 - [x] No console errors, missing assets, broken URLs, horizontal overflow, or blocked controls in local testing.
 - [x] Refresh and direct navigation work at different scene positions.
 - [x] Performance audit: mobile particle/resolution caps, ~30 FPS canvas throttle, document visibility pause, prologue intersection pause, offscreen ambient-loop pause, lazy imagery, and WebP derivatives.
-- [x] GitHub Pages build verified; the original implementation was commit `2d021df`. The canonical custom domain is configured as `www.jfimusic.com`; final HTTPS edge verification follows the inertial-motion deployment.
+- [x] GitHub Pages build verified; the original implementation was commit `2d021df`. The canonical custom domain `https://www.jfimusic.com/` is configured, certificate-verified on GitHub’s Pages edges, and set to enforce HTTPS.
 
 ### Final audit
 
@@ -235,7 +235,8 @@ Maintain a practical architecture guide covering scene/content mapping, animatio
 - Pre-descent recoverable baseline: `e63f32c`.
 - Complete cinematic implementation: `2d021df`.
 - GitHub Pages build status: **built and visually verified live** on 2026-08-18.
-- Canonical custom domain: `https://www.jfimusic.com/` via repository `CNAME`, GitHub Pages settings, and matching metadata. DNS resolves to GitHub Pages; the pre-deploy HTTPS response was still a stale Wix/Fastly cache and must be rechecked after the build.
+- Canonical custom domain: `https://www.jfimusic.com/` via repository `CNAME`, GitHub Pages settings, and matching metadata. DNS resolves to GitHub Pages, the certificate validates on all tested Pages edges, and `https_enforced` is enabled. Individual clients may briefly retain the former Wix IP until their local DNS cache expires.
+- Inertial motion deployment: `abba5b0`; cache keys `20260818-inertia1`.
 - Motion refinement: native scroll remains accessible while visual progress eases toward its target; wheel/touch gestures add a decaying cinematic impulse to star streaks and the signal core.
 
 ## Current limitations and deliberate boundaries
