@@ -164,6 +164,7 @@ The originals remain untouched in `assets/`. The site consumes these smaller der
 - `j-disco-two-hands.webp` — tech/live performance image.
 - `of-a-lifetime.webp`, `warrior-outside.webp`, and `fi-x4.webp` — gallery.
 - `our-name-is-jfi.webp` — footer artwork.
+- The “Perfect” live performance is embedded from the unlisted YouTube upload (`cW_MX0Fi5k4`) so viewers receive adaptive HD playback without adding the master video to the repository.
 
 No third-party artwork will be hotlinked or copied from image search.
 

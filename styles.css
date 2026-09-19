@@ -132,7 +132,8 @@ nav a:hover::after,nav a:focus-visible::after { transform:scaleX(1); }
 .video-feature { padding:130px clamp(24px,8vw,140px); background:linear-gradient(180deg,#050406,#08050c 50%,#040305); }
 .video-subtitle { margin:-20px 0 35px; color:#918b95; font-size:.7rem; letter-spacing:.24em; text-transform:uppercase; }
 .video-shell { max-width:1200px; margin:auto; overflow:hidden; border:1px solid #3b2d48; border-radius:var(--radius-xl); box-shadow:0 26px 90px #6c2ea042,0 0 48px #fb287c18; }
-.video-shell video { display:block; width:100%; aspect-ratio:16/9; border-radius:inherit; background:#09080a; object-fit:cover; }
+.video-shell video,
+.video-shell iframe { display:block; width:100%; aspect-ratio:16/9; border:0; border-radius:inherit; background:#09080a; object-fit:cover; }
 .story { padding:160px clamp(24px,8vw,140px); display:grid; grid-template-columns:minmax(280px,.85fr) 1.15fr; gap:clamp(55px,10vw,160px); align-items:center; background:linear-gradient(115deg,#0c0712,#030304 60%); }
 .layered-art { position:relative; padding:0 12% 20% 0; }
 .layered-art img:first-child { border-radius:var(--radius-xl); box-shadow:var(--bloom-violet); }
