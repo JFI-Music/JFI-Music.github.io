@@ -28,9 +28,10 @@ nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () =>
 const playlist = [
   { title:'Yet to Become', file:'assets/musicPlayerAssets/01-yet-to-become.mp3', duration:'03:11' },
   { title:'Destroy the Girl', file:'assets/musicPlayerAssets/02-destroy-the-girl.mp3', duration:'04:06' },
-  { title:'Every Thousand Years', file:'assets/musicPlayerAssets/03-every-thousand-years.mp3', duration:'03:35' },
+  { title:'Every Thousand Years', file:'assets/musicPlayerAssets/03-every-thousand-years.mp3', duration:'03:34' },
   { title:'My Origin Story', file:'assets/musicPlayerAssets/04-my-origin-story.mp3', duration:'03:26' },
-  { title:'Of a Lifetime', file:'assets/musicPlayerAssets/05-of-a-lifetime.mp3', duration:'06:12' },
+  { title:'Perfect', file:'assets/musicPlayerAssets/05-perfect.mp3', duration:'04:05' },
+  { title:'City of the Violet Crown', file:'assets/musicPlayerAssets/06-city-of-the-violet-crown.mp3', duration:'03:55' },
 ];
 
 const player = document.querySelector('#playlist-audio');
@@ -102,7 +103,7 @@ progress.addEventListener('input', () => {
 
 const syncSingleButton = () => {
   singlePlay.textContent = singleAudio.paused ? '▶' : 'Ⅱ';
-  singlePlay.setAttribute('aria-label', `${singleAudio.paused ? 'Play' : 'Pause'} City of the Violet Crown`);
+  singlePlay.setAttribute('aria-label', `${singleAudio.paused ? 'Play' : 'Pause'} Warrior Outside`);
   singleShell.classList.toggle('is-playing', !singleAudio.paused);
 };
 
