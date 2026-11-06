@@ -7,8 +7,8 @@ img { display:block; max-width:100%; }
 .skip-link { position:fixed; left:1rem; top:-5rem; z-index:20; padding:.7rem 1rem; background:white; color:black; }
 .skip-link:focus { top:1rem; }
 .site-header { position:sticky; z-index:10; top:0; display:flex; justify-content:space-between; align-items:center; width:100%; padding:1rem max(24px,calc((100vw - var(--max))/2)); border-bottom:1px solid var(--line); background:rgba(7,6,10,.88); backdrop-filter:blur(18px); }
-.brand { font:600 1.25rem/1 "Orbitron",sans-serif; text-decoration:none; letter-spacing:-.08em; }
-.brand span { color:var(--violet); }
+.brand { display:flex; align-items:center; width:clamp(58px,5vw,78px); text-decoration:none; }
+.brand img { display:block; width:100%; height:auto; filter:brightness(1.7) contrast(1.08) drop-shadow(0 0 18px rgba(169,109,255,.4)); }
 nav { display:flex; gap:clamp(1rem,3vw,2.4rem); }
 nav a { color:var(--muted); font-size:.7rem; font-weight:500; letter-spacing:.14em; text-decoration:none; text-transform:uppercase; }
 nav a:hover,nav a:focus-visible { color:white; }
